@@ -25,4 +25,6 @@ urlpatterns = [
     path('design/delete/<int:designId>/', design.views.delete, name='delete-design'), 
     path('search/', design.views.search, name='search'),
     path('print/', design.views.print, name='print'),
+
+    path('admin/', admin.site.urls),
 ]
