@@ -1,0 +1,48 @@
+
+body{
+    font-family: '"Lucida Sans Unicode", "Lucida Grande", sans-serif', sans-serif;
+}
+
+input {
+    font-family: 'Fira Sans Condensed', sans-serif;
+}
+
+.namecard {
+    border: 1px solid blue;
+    width: 18cm;
+    height: 10.8cm;
+    position: relative;
+}
+
+.namecard .textfield {
+    box-shadow: 0 0 0 1px #ff00ff;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+
+    position: absolute;
+
+    font-family: "Times New Roman", Times, serif;
+    font-size: 16px;
+    /*background-color: rgba(0,0,0,0);*/
+    background-color: #ffffff;
+}
+
+.namecard .textfield:hover {
+    cursor: pointer;
+    box-shadow: 0 0 0 4px #ff00ff;
+}
+
+.namecard .textfield.active {
+    box-shadow: 0 0 0 4px #0000ff;
+}
+tbody td.deleteDesing{
+    font-weight: bold;
+    color: #Ff5722;
+    cursor: pointer;
+}
+span.error-msg.small{
+color:#Ff5722;
+display: block;
+font-size: 14px;
+}
