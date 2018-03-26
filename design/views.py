@@ -42,18 +42,60 @@ def manageDesign(request, edit_id = None):
 
         if len(name) == 0 :
             ctx['errors']['name'] = 'Дизайны нэрийг оруулна уу'
-        if len(lastname_attrs) == 0:
+            ctx['lastname_attrs'] = lastname_attrs
+            ctx['firstname_attrs'] = firstname_attrs
+            ctx['phone_attrs'] = phone_attrs
+            ctx['email_attrs'] = email_attrs
+            ctx['fax_attrs'] = fax_attrs
+            ctx['position_attrs'] = position_attrs
+        if len(lastname_attrs) == 0 :
             ctx['errors']['lastname_attrs'] = 'Овог талбар дахь дизайныг оруулна уу'
+            ctx['firstname_attrs'] = firstname_attrs
+            ctx['phone_attrs'] = phone_attrs
+            ctx['email_attrs'] = email_attrs
+            ctx['fax_attrs'] = fax_attrs
+            ctx['position_attrs'] = position_attrs
+            ctx['name'] = name
         if len(firstname_attrs) == 0 :
             ctx['errors']['firstname_attrs'] = 'Нэр талбар дахь дизайныг оруулна уу'
+            ctx['lastname_attrs'] = lastname_attrs
+            ctx['phone_attrs'] = phone_attrs
+            ctx['email_attrs'] = email_attrs
+            ctx['fax_attrs'] = fax_attrs
+            ctx['position_attrs'] = position_attrs
+            ctx['name'] = name
         if len(phone_attrs) == 0 :
             ctx['errors']['phone_attrs'] = 'Утас талбар дахь дизайныг оруулна уу'
+            ctx['lastname_attrs'] = lastname_attrs
+            ctx['firstname_attrs'] = firstname_attrs
+            ctx['email_attrs'] = email_attrs
+            ctx['fax_attrs'] = fax_attrs
+            ctx['position_attrs'] = position_attrs
+            ctx['name'] = name
         if len(email_attrs) == 0 :
             ctx['errors']['email_attrs'] = 'e-mail талбар дахь дизайныг оруулна уу'
+            ctx['lastname_attrs'] = lastname_attrs
+            ctx['firstname_attrs'] = firstname_attrs
+            ctx['phone_attrs'] = phone_attrs
+            ctx['fax_attrs'] = fax_attrs
+            ctx['position_attrs'] = position_attrs
+            ctx['name'] = name
         if len(fax_attrs) == 0:
             ctx['errors']['fax_attrs'] = 'Факс талбар дахь дизайныг оруулна уу'
+            ctx['lastname_attrs'] = lastname_attrs
+            ctx['firstname_attrs'] = firstname_attrs
+            ctx['phone_attrs'] = phone_attrs
+            ctx['email_attrs'] = email_attrs
+            ctx['position_attrs'] = position_attrs
+            ctx['name'] = name
         if len(position_attrs) == 0:
             ctx['errors']['position_attrs'] = 'Албан тушаал талбар дахь дизайныг оруулна уу'
+            ctx['lastname_attrs'] = lastname_attrs
+            ctx['firstname_attrs'] = firstname_attrs
+            ctx['phone_attrs'] = phone_attrs
+            ctx['email_attrs'] = email_attrs
+            ctx['fax_attrs'] = fax_attrs
+            ctx['name'] = name
         
         if len(name) != 0 and len(lastname_attrs) != 0 and len(firstname_attrs) != 0 and len(phone_attrs) != 0 and len(email_attrs) != 0 and len(fax_attrs) != 0 and len(position_attrs) != 0:
             if edit_id==None:

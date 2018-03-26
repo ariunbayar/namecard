@@ -140,3 +140,19 @@ function newUser(){
 function changeField(el){
      applyStyleToCurrentElement();
 }
+
+
+
+function keypressed(e, el){
+    if (e.key == 'ArrowDown') {
+        var value = parseInt(el.value);
+        el.value = (value - 1) + 'px';
+    }
+  else if(e.key == 'ArrowUp')
+    {
+      var value = parseInt(el.value);
+        el.value = (value +1) + 'px';
+    }
+    applyStyleToCurrentElement();
+    e.preventDefault();
+};

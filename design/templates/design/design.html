@@ -60,7 +60,7 @@
     <hr>
    {% if id %}
         <b id="edit-user">Дизайн засах</b> 
-        <b id="add-user" style="display: none;"> дизайн засах</b>          
+        <b id="add-user" style="display: none;">Шинээр дизайн нэмэх</b>          
    {% else %}
         <b id="edit-user" style="display: none;">Дизайн засах</b> 
         <b id="add-user">Шинээр дизайн нэмэх</b>
@@ -92,12 +92,12 @@
                     <table>
                         <tr>
                             <td> X: </td>
-                            <td><input type = "text" id = "left" onchange="changeField(this)"/></td>
+                            <td><input type = "text" id = "left"  onkeydown="keypressed(event,this)"/></td>
                         </tr>
 
                         <tr>
                             <td> Y: </td>
-                            <td><input type = "text" id = "top" onchange="changeField(this)"/></td>
+                            <td><input type = "text" id = "top"  onkeydown="keypressed(event,this)" /></td>
                         </tr>
 
                          <tr>
@@ -118,17 +118,17 @@
 
                         <tr>
                             <td> Width: </td>
-                            <td><input type = "text" id = "width" onchange="changeField(this)"></td>
+                            <td><input type = "text" id = "width" onkeydown="keypressed(event,this)"></td>
                         </tr>
 
                         <tr>
                             <td> Height: </td>
-                            <td><input type = "text" id = "height" onchange="changeField(this)" ></td>
+                            <td><input type = "text" id = "height" onkeydown="keypressed(event,this)" ></td>
                         </tr>            
 
                         <tr>
                             <td> FontSize: </td>
-                            <td><input type = "text" id = "fontSize" onchange="changeField(this)" /></td>
+                            <td><input type = "text" id = "fontSize" onkeydown="keypressed(event,this)" /></td>
                         </tr>
 
                         <tr>
