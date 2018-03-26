@@ -12,15 +12,15 @@ def manageDesign(request, edit_id = None):
         'designList':designs,
     }    
 
+    try:
+        design = Design.objects.get(pk = edit_id)
+    except Design.DoesNotExist:
+        pass  
     
        
 
     if edit_id: 
-        try:
-            design = Design.objects.get(pk = edit_id)
-        except Design.DoesNotExist:
-            pass  
-        else:
+        
             ctx['id'] = design.id
             ctx['lastname_attrs'] = design.lastname_attrs
             ctx['firstname_attrs'] = design.firstname_attrs
@@ -56,11 +56,9 @@ def manageDesign(request, edit_id = None):
             ctx['errors']['position_attrs'] = 'Албан тушаал талбар дахь дизайныг оруулна уу'
         
         if len(name) != 0 and len(lastname_attrs) != 0 and len(firstname_attrs) != 0 and len(phone_attrs) != 0 and len(email_attrs) != 0 and len(fax_attrs) != 0 and len(position_attrs) != 0:
-            if edit_id:
-                design = Design.objects.get(pk = edit_id)
-            else:
-                design = Design()       
-     
+            if edit_id==None:
+               design = Design()       
+                
             design.name = name
             design.lastname_attrs = lastname_attrs
             design.firstname_attrs = firstname_attrs
