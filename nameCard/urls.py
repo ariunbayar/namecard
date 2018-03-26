@@ -18,10 +18,10 @@ from django.urls import path
 import design.views
 
 urlpatterns = [
-    path('', design.views.design, name='design'),
+    path('', design.views.manageDesign, name='add-design'),
 
     # http://abc.com/edit/13
-    path('edit/<int:edit_id>', design.views.design, name='edit-design'),
+    path('edit/<int:edit_id>', design.views.manageDesign, name='edit-design'),
     path('design/delete/<int:designId>/', design.views.delete, name='delete-design'), 
     path('search/', design.views.search, name='search'),
     path('print/', design.views.print, name='print'),

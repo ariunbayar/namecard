@@ -40,29 +40,17 @@ function currentElement(active_el) {
     } else {
         active_el.classList.add('active');
         cur_el = active_el;
-        var top = window.getComputedStyle(cur_el, null).getPropertyValue('top');
-        var left = window.getComputedStyle(cur_el, null).getPropertyValue('left');
-        var fontFamily = window.getComputedStyle(cur_el, null).getPropertyValue('font-family');
-        var color = rgb2hex(window.getComputedStyle(cur_el, null).getPropertyValue('color'));
-        var width = window.getComputedStyle(cur_el, null).getPropertyValue('width');
-        var height = window.getComputedStyle(cur_el, null).getPropertyValue('height');
-        var fontSize = window.getComputedStyle(cur_el, null).getPropertyValue('font-size');
-        var textAlign = window.getComputedStyle(cur_el, null).getPropertyValue('text-align');
-        var fontWeight = window.getComputedStyle(cur_el, null).getPropertyValue('font-weight');
-        var fontStyle = window.getComputedStyle(cur_el, null).getPropertyValue('font-style');
-        var backgroundColor = rgb2hex(window.getComputedStyle(cur_el, null).getPropertyValue('background-color'));
-
-        document.querySelector('#top').value = top;
-        document.querySelector('#left').value = left; 
-        //document.querySelector('#fontFamily').value =fontFamily;
-        document.querySelector('#color').value = color;
-        document.querySelector('#width').value = width;
-        document.querySelector('#height').value = height;
-        document.querySelector('#fontSize').value = fontSize;
-        document.querySelector('#textAlign').value = textAlign;
-        document.querySelector('#fontWeight').value = fontWeight;
-        document.querySelector('#fontStyle').value = fontStyle;
-        document.querySelector('#backgroundColor').value = backgroundColor;
+        document.querySelector('#top').value = window.getComputedStyle(cur_el, null).getPropertyValue('top');
+        document.querySelector('#left').value = window.getComputedStyle(cur_el, null).getPropertyValue('left'); 
+        document.querySelector('#font').value =window.getComputedStyle(cur_el, null).getPropertyValue('font-family');
+        document.querySelector('#color').value = rgb2hex(window.getComputedStyle(cur_el, null).getPropertyValue('color'));
+        document.querySelector('#width').value = window.getComputedStyle(cur_el, null).getPropertyValue('width');
+        document.querySelector('#height').value = window.getComputedStyle(cur_el, null).getPropertyValue('height');
+        document.querySelector('#fontSize').value = window.getComputedStyle(cur_el, null).getPropertyValue('font-size');
+        document.querySelector('#textAlign').value = window.getComputedStyle(cur_el, null).getPropertyValue('text-align');
+        document.querySelector('#fontWeight').value = window.getComputedStyle(cur_el, null).getPropertyValue('font-weight');
+        document.querySelector('#fontStyle').value = window.getComputedStyle(cur_el, null).getPropertyValue('font-style');
+        document.querySelector('#backgroundColor').value = rgb2hex(window.getComputedStyle(cur_el, null).getPropertyValue('background-color'));
 
        
         
@@ -70,21 +58,21 @@ function currentElement(active_el) {
 }
 
 
-function showDesign()
+function showDesignOnLoad()
 {
    
-    if (document.querySelector("#lastname_attrs").value.length > 0) GG('lastname_attrs');
-    if (document.querySelector("#firstname_attrs").value.length > 0) GG('firstname_attrs');
-    if (document.querySelector("#position_attrs").value.length > 0) GG('position_attrs');
-    if (document.querySelector("#phone_attrs").value.length > 0) GG('phone_attrs');
-    if (document.querySelector("#email_attrs").value.length > 0) GG('email_attrs');
-    if (document.querySelector("#fax_attrs").value.length > 0) GG('fax_attrs');
+    if (document.querySelector("#lastname_attrs").value.length > 0) setDesign('lastname_attrs');
+    if (document.querySelector("#firstname_attrs").value.length > 0) setDesign('firstname_attrs');
+    if (document.querySelector("#position_attrs").value.length > 0) setDesign('position_attrs');
+    if (document.querySelector("#phone_attrs").value.length > 0) setDesign('phone_attrs');
+    if (document.querySelector("#email_attrs").value.length > 0) setDesign('email_attrs');
+    if (document.querySelector("#fax_attrs").value.length > 0) setDesign('fax_attrs');
 
    
 }
 
 
-function GG(textfieldName){
+function setDesign(textfieldName){
     var input_id = "[input_id = " + textfieldName + "]";
     var el_name = document.querySelector("#" + textfieldName).value;
     var values = el_name.split('/');
@@ -123,28 +111,7 @@ function applyStyleToCurrentElement() {
     // <div ... input_id="lastname_attrs">...</div>
     var input_id = cur_el.getAttribute('input_id');
 
-    // input_id = "lastname_attrs"
-    var data_field = document.querySelector('#' + input_id);
-    switch(data_field.id) {
-        case 'lastname_attrs':
-        document.querySelector('#lastname_attrs').value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
-        break;
-        case 'firstname_attrs':
-        document.querySelector('#firstname_attrs').value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
-        break;
-        case 'phone_attrs':
-        document.querySelector('#phone_attrs').value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
-        break;
-        case 'email_attrs':
-        document.querySelector('#email_attrs').value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
-        break;
-        case 'fax_attrs':
-        document.querySelector('#fax_attrs').value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
-        break;
-        case 'position_attrs':
-        document.querySelector('#position_attrs').value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
-        break;
-    }
+    document.querySelector('#'+input_id).value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
 }
 
 
@@ -162,7 +129,7 @@ function chooseBtn(btn){
 }
 
 
-showDesign();
+showDesignOnLoad();
 
 
 function newUser(){
@@ -171,18 +138,5 @@ function newUser(){
 
 
 function changeField(el){
- console.log(el.id);
-    switch(el.id)
-    { 
-        case 'top':  cur_el.style.top = el.value; break;
-        case 'left':  cur_el.style.left = el.value; break;
-        case 'font':  cur_el.style.fontFamily = el.value; break;
-        case 'color':  cur_el.style.color = el.value; break;
-        case 'width':  cur_el.style.width = el.value; break;
-        case 'height':  cur_el.style.height = el.value; break;
-        case 'fontSize':  cur_el.style.fontSize = el.value; break;
-        case 'backgroundColor':  cur_el.style.backgroundColor = el.value; break;
-
-    }
      applyStyleToCurrentElement();
 }
