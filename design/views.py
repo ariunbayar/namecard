@@ -118,7 +118,7 @@ def manageDesign(request, edit_id = None):
 def delete(request, designId):    
     design = Design.objects.get(pk = designId)
     design.delete()
-    return redirect('design')
+    return redirect('add-design')
 
 
 def search(request):

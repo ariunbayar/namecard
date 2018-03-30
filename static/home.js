@@ -40,23 +40,67 @@ function currentElement(active_el) {
     } else {
         active_el.classList.add('active');
         cur_el = active_el;
-        document.querySelector('#top').value = window.getComputedStyle(cur_el, null).getPropertyValue('top');
-        document.querySelector('#left').value = window.getComputedStyle(cur_el, null).getPropertyValue('left'); 
+        //document.querySelector('#top').value = window.getComputedStyle(cur_el, null).getPropertyValue('top');
+        //document.querySelector('#left').value = window.getComputedStyle(cur_el, null).getPropertyValue('left'); 
         document.querySelector('#font').value =window.getComputedStyle(cur_el, null).getPropertyValue('font-family');
         document.querySelector('#color').value = rgb2hex(window.getComputedStyle(cur_el, null).getPropertyValue('color'));
-        document.querySelector('#width').value = window.getComputedStyle(cur_el, null).getPropertyValue('width');
-        document.querySelector('#height').value = window.getComputedStyle(cur_el, null).getPropertyValue('height');
+        //document.querySelector('#width').value = window.getComputedStyle(cur_el, null).getPropertyValue('width');
+        //document.querySelector('#height').value = window.getComputedStyle(cur_el, null).getPropertyValue('height');
         document.querySelector('#fontSize').value = window.getComputedStyle(cur_el, null).getPropertyValue('font-size');
         document.querySelector('#textAlign').value = window.getComputedStyle(cur_el, null).getPropertyValue('text-align');
         document.querySelector('#fontWeight').value = window.getComputedStyle(cur_el, null).getPropertyValue('font-weight');
         document.querySelector('#fontStyle').value = window.getComputedStyle(cur_el, null).getPropertyValue('font-style');
         document.querySelector('#backgroundColor').value = rgb2hex(window.getComputedStyle(cur_el, null).getPropertyValue('background-color'));
-
+        
+        //if(document.querySelector('#textAlign').value != "center")
+            console.log(window.getComputedStyle(cur_el, null).getPropertyValue('text-align'));
        
         
     }
 }
 
+function toolbarActive(active_el, value){
+    console.log(active_el.id);
+    var elements = document.querySelectorAll('.toolbars');
+    elements.forEach(function(element) {
+        if (element == active_el) return;
+
+        if (element.classList.contains('active')) {
+            element.classList.remove('active');
+
+        }
+    });
+
+
+    if (active_el.classList.contains('active')) {
+        chooseBtn(active_el, "center");
+        active_el.classList.remove('active');
+         
+    } 
+    else {
+        active_el.classList.add('active');
+        chooseBtn(active_el, value);   
+        
+    }   
+        
+}
+
+function boldAndItalic(active_el, value) {
+    //console.log(active_el);
+   
+ if (active_el.classList.contains('active')) {
+        active_el.classList.remove('active');
+        chooseBtn(active_el, "normal");
+ }
+  else {
+    active_el.classList.add('active');
+    active_el.value = active_el.id;
+    chooseBtn(active_el, value);
+}
+
+
+
+}
 
 function showDesignOnLoad()
 {
@@ -96,12 +140,12 @@ function setDesign(textfieldName){
 function applyStyleToCurrentElement() {
     if (cur_el == null) return;    
 
-    cur_el.style.top = document.querySelector('#top').value;
-    cur_el.style.left = document.querySelector('#left').value;
+    //cur_el.style.top = document.querySelector('#top').value;
+   // cur_el.style.left = document.querySelector('#left').value;
     cur_el.style.fontFamily = document.querySelector('#font').value;
     cur_el.style.color = document.querySelector('#color').value;
-    cur_el.style.width = document.querySelector('#width').value;
-    cur_el.style.height = document.querySelector('#height').value;
+    //cur_el.style.width = document.querySelector('#width').value;
+    //cur_el.style.height = document.querySelector('#height').value;
     cur_el.style.fontSize = document.querySelector('#fontSize').value;
     cur_el.style.textAlign = document.querySelector('#textAlign').value;;  // left, center, right, justify
     cur_el.style.fontWeight = document.querySelector('#fontWeight').value;  // bold, normal
@@ -115,21 +159,73 @@ function applyStyleToCurrentElement() {
 }
 
 
-function chooseBtn(btn){
+function chooseBtn(btn, value){
     
-    if(btn.id == "center" || btn.id == "left1" || btn.id == "right" || btn.id == "justify")
-        document.querySelector('#textAlign').value = document.querySelector("#" + btn.id).value;
+    if(btn.id == "center" || btn.id == "left" || btn.id == "right" || btn.id == "justify")
+        document.querySelector('#textAlign').value = value;
 
     if(btn.id == "normal" || btn.id == "bold")
-        document.querySelector('#fontWeight').value = document.querySelector("#" + btn.id).value;
+        document.querySelector('#fontWeight').value = value;
 
-    if(btn.id == "normal1" || btn.id == "italic" )
-        document.querySelector('#fontStyle').value = document.querySelector("#" + btn.id).value;
+    if(btn.id == "normal" || btn.id == "italic" )
+        document.querySelector('#fontStyle').value = value;
    applyStyleToCurrentElement();
 }
 
 
 showDesignOnLoad();
+
+document.addEventListener('keydown', function(e){
+    if(cur_el==null) return;    
+  console.log(e.target.tagName);
+  if(e.target.tagName == 'BODY') { e.preventDefault(); }
+  else return;
+
+  if (e.key == 'ArrowRight') {
+    if (e.shiftKey == true) {
+      cur_el.style.width = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('width')) + 1) + 'px';
+    } else {
+      cur_el.style.left = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('left')) + 1) + 'px';
+    }
+    
+    
+  }
+
+  if (e.key == 'ArrowLeft') {
+    if (e.shiftKey == true) {
+      cur_el.style.width = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('width')) - 1) + 'px';
+    } else {
+      cur_el.style.left = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('left')) - 1) + 'px';
+    }
+    
+  }
+
+  if ( e.key == 'ArrowUp') {
+    
+     if (e.shiftKey == true) {
+
+      cur_el.style.height = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('height')) - 1) + 'px';
+    } else {
+      cur_el.style.top = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('top')) - 1) + 'px';
+    }
+   
+    } 
+    if ( e.key == 'ArrowDown') {
+    
+     if (e.shiftKey == true) {
+      cur_el.style.height = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('height')) + 1) + 'px';
+    } else {
+      cur_el.style.top = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('top')) + 1) + 'px';
+    }
+    }  
+   // e.preventDefault();
+    console.log(e.key);
+
+    var input_id = cur_el.getAttribute('input_id');
+
+    document.querySelector('#'+input_id).value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
+
+});
 
 
 function newUser(){
@@ -144,11 +240,11 @@ function changeField(el){
 
 
 function keypressed(e, el){
-    if (e.key == 'ArrowDown') {
+    if (e.key == '2') {
         var value = parseInt(el.value);
         el.value = (value - 1) + 'px';
     }
-  else if(e.key == 'ArrowUp')
+  else if(e.key == '8')
     {
       var value = parseInt(el.value);
         el.value = (value +1) + 'px';

@@ -3,6 +3,8 @@
 
 <head>
     <meta charset = "UTF-8">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
+    <!--<link rel="stylesheet" type="text/css" href="/home/baigalaa/Downloads/fontawesome-free-5.0.9/web-fonts-with-css/css/fontawesome-all.css">-->
     <link rel = "stylesheet" type = "text/css" href = "/static/design.css">
     <title> My website </title>
 </head>
@@ -29,12 +31,12 @@
          <tr>
              <td> {{design.id}} </td>
              <td> <a href="{% url 'edit-design' design.id %}">{{design.name}} </a></td>
-             <td> {{design.lastname_attrs}} </a></td>
+             <!--<td> {{design.lastname_attrs}} </a></td>
              <td> {{design.firstname_attrs}} </a></td>
              <td> {{design.phone_attrs}} </a></td>
              <td> {{design.email_attrs}} </a></td>
              <td> {{design.fax_attrs}} </a></td>
-             <td> {{design.position_attrs}} </a></td>
+             <td> {{design.position_attrs}} </a></td>-->
              <td class="deleteDesing" onclick="deleteDesign({{design.id}})"> x </td>
          </tr>
         {% endfor %}
@@ -69,17 +71,71 @@
         <tbody>
             <tr>
                 <th>Дизайны нэр:</th>
+
                 <td>
                     <input type = "text" name = "addName" value = "{{name}}"/>
                      <span class = "error-msg small" >{{errors.name}}</span>
                     
-                </td>
+
+
+            </tr>
+            <tr> 
+              <td> </td>
+
+            </td>
+                  <td>
+                <div class="toolbars" id="center" onclick = "toolbarActive(this, 'center')">
+                  <i class="fas fa-align-center"></i>
+                </div>
+
+                <div class="toolbars" id="justify" onclick = "toolbarActive(this, 'justify')">
+                  <i class="fas fa-align-justify"></i>
+                </div>
+
+                <div class="toolbars" id="left" onclick = "toolbarActive(this, 'left')">
+                  <i class="fas fa-align-left"></i>
+                </div>
+
+                <div class="toolbars" id="right" onclick = "toolbarActive(this, 'right')">
+                  <i class="fas fa-align-right"></i>
+                </div>
+
+                <div class="toolbar" id="bold" value = "bold" onclick = "boldAndItalic(this, 'bold')">
+                  <i class="fas fa-bold"></i>
+                </div>
+
+                <div class="toolbar" id="italic" onclick = "boldAndItalic(this, 'italic')">
+                  <i class="fas fa-italic"></i>
+                </div>
+
+                    <label>Font:</label>
+                                <select name = "font" id = "font" onchange="changeField(this)">
+                                    <option value = "Lucida Sans Unicode">Lucida Sans Unicode</option>
+                                    <option value = "Lucida Grande">Lucida Grande</option>
+                                    <option value = "sans-serif">sans-serif</option>
+                                </select>
+
+                       <label>Color:</label>
+                       <input type = "color" id = "color" value = "#ff0000" onchange="changeField(this)">
+                       <label> FontSize: </label> <select name = "fontSize" id = "fontSize" onchange="changeField(this)">
+                                    <option value = "10px">10</option>
+                                    <option value = "11px">11</option>
+                                    <option value = "12px">12</option>
+                                    <option value = "16px">16</option>
+                                    <option value = "24px">24</option>
+                                    <option value = "32px">32</option>
+                                </select>
+                                <label>BackgroundColor:</label> <input type = "color" id = "backgroundColor" value = "#ff0000" onchange="changeField(this)" >
+
+                           
+              </td>
             </tr>
             <tr>
+             
                 <th>Дизайн гаргах:</th>
                 <td>
                     <div class = "namecard">
-                        <div class = "textfield" input_id = "lastname_attrs" style = "top: 60px; left: 100px;" onclick = "currentElement(this)">[овог]</div>
+                        <div class = "textfield" input_id = "lastname_attrs" style = "top: 60px; left: 100px; " onclick = "currentElement(this)">[овог]</div>
                         <div class ="textfield" input_id = "firstname_attrs" style = "top: 100px; left: 100px;" onclick = "currentElement(this)">[нэр]</div>
                         <div class ="textfield" input_id = "position_attrs" style = "top: 140px; left: 100px;" onclick = "currentElement(this)">[албан тушаал]</div>
                         <div class ="textfield" input_id = "phone_attrs" style = "top: 180px; left: 100px;" onclick = "currentElement(this)">[утас]</div>
@@ -87,92 +143,6 @@
                         <div class = "textfield" input_id = "fax_attrs" style = "top: 260px; left: 100px;" onclick = "currentElement(this)">[факс]</div>
                     </div>
                 </td>
-
-                 <td>
-                    <table>
-                        <tr>
-                            <td> X: </td>
-                            <td><input type = "text" id = "left"  onkeydown="keypressed(event,this)"/></td>
-                        </tr>
-
-                        <tr>
-                            <td> Y: </td>
-                            <td><input type = "text" id = "top"  onkeydown="keypressed(event,this)" /></td>
-                        </tr>
-
-                         <tr>
-                            <td> Font: </td>
-                            <td>
-                                <select name = "font" id = "font" onchange="changeField(this)">
-                                    <option value = "Lucida Sans Unicode">Lucida Sans Unicode</option>
-                                    <option value = "Lucida Grande">Lucida Grande</option>
-                                    <option value = "sans-serif">sans-serif</option>
-                                </select>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> Color: </td>
-                            <td><input type = "color" id = "color" value = "#ff0000" onchange="changeField(this)"></td>
-                        </tr>
-
-                        <tr>
-                            <td> Width: </td>
-                            <td><input type = "text" id = "width" onkeydown="keypressed(event,this)"></td>
-                        </tr>
-
-                        <tr>
-                            <td> Height: </td>
-                            <td><input type = "text" id = "height" onkeydown="keypressed(event,this)" ></td>
-                        </tr>            
-
-                        <tr>
-                            <td> FontSize: </td>
-                            <td><input type = "text" id = "fontSize" onkeydown="keypressed(event,this)" /></td>
-                        </tr>
-
-                        <tr>
-                            <td> TextAlign: </td>
-                            <td>
-                                <input type = "hidden" id = "textAlign" >
-                                <input type = "button" id = "left1" value = "left" onclick = "chooseBtn(this)" />
-                                <input type = "button" id = "center" value = "center" onclick = "chooseBtn(this)"/>
-                                <input type = "button" id = "right" value = "right" onclick = "chooseBtn(this)"/>
-                                <input type = "button" id = "justify" value = "justify" onclick = "chooseBtn(this)"/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> fontWeight: </td>
-                            <td>
-                                <input type = "hidden" id = "fontWeight">
-                                <input type = "button" id = "normal" value = "normal" onclick = "chooseBtn(this)"/>
-                                <input type = "button" id = "bold" value = "bold" onclick = "chooseBtn(this)"/>
-                            </td>
-                        </tr>
-
-                         <tr>
-                            <td> fontStyle: </td>
-                            <td>
-                                <input type = "hidden" id = "fontStyle">
-                                <input type = "button" id = "normal" value = "normal" onclick = "chooseBtn(this)"/>
-                                <input type = "button" id = "italic" value = "italic" onclick = "chooseBtn(this)"/>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td> backgroundColor: </td>
-                            <td> <input type = "color" id = "backgroundColor" value = "#ff0000" onchange="changeField(this)" ></td>
-                        </tr>  
-
-                        <tr> 
-                            <td> </td>
-                            
-                        </tr>    
-
-                     </table>
-                </td>
-
             </tr>
             <tr>
               <td> </td>

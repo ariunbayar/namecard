@@ -6,6 +6,35 @@ body{
 input {
     font-family: 'Fira Sans Condensed', sans-serif;
 }
+.toolbars{
+    display: inline-block;
+    border: 1px solid blue;
+    border-radius: 2px;
+    background-color: #cbcbcb;
+    box-shadow: inset 0 1px 0 0px rgba(255,255,255,.85), 0 0 0 1px #aB9c9c;
+    padding: 4px 5px;
+    margin: 2px 2px 2px 2px;
+
+}
+
+.toolbar{
+    display: inline-block;
+    border: 1px solid blue;
+    border-radius: 2px;
+    background-color: #cbcbcb;
+    box-shadow: inset 0 1px 0 0px rgba(255,255,255,.85), 0 0 0 1px #aB9c9c;
+    padding: 4px 5px;
+    margin: 2px 2px 2px 2px;
+
+}
+
+.toolbars.active{
+    background-color: gray;
+}
+
+.toolbar.active{
+    background-color: gray;
+}
 
 .namecard {
     border: 1px solid blue;
