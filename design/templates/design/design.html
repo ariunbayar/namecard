@@ -11,7 +11,7 @@
 
   <body>
 
-    <table border = "1">
+    <table border = "1" style="display: none">
         <thead>
             <tr>
                 <th> ID </th>
@@ -30,120 +30,133 @@
         </tbody>
     </table>
 
-    <form method = "POST">
-        {% csrf_token %}
-        <input id = "edit-id" type = "hidden" name = "id" value = "{{id}}"/>
-        <input id = "lastname_attrs" type = "hidden" name = "lastname_attrs" value = "{{lastname_attrs}}" />
-        <span class = "error-msg small">{{errors.lastname_attrs}}</span>
-        <input id = "firstname_attrs" type = "hidden" name = "firstname_attrs" value = "{{firstname_attrs}}" />
-        <span class = "error-msg small">{{errors.firstname_attrs}}</span>
-        <input id = "phone_attrs" type = "hidden" name = "phone_attrs" value = "{{phone_attrs}}"/>
-        <span class = "error-msg small">{{errors.phone_attrs}}</span>
-        <input id = "email_attrs" type = "hidden" name = "email_attrs" value = "{{email_attrs}}"/>
-        <span class = "error-msg small">{{errors.email_attrs}}</span>
-        <input id = "fax_attrs" type = "hidden" name = "fax_attrs" value= "{{fax_attrs}}"/>
-        <span class = "error-msg small">{{errors.fax_attrs}}</span>
-        <input id = "position_attrs" type = "hidden" name = "position_attrs" value = "{{position_attrs}}"/>
-        <span class = "error-msg small" type = "hidden">{{errors.position_attrs}}</span>
-        <input type="button" value="Шинэ дизайн үүсгэх" onclick="newUser()">
-        <hr>
+    <div class="design-manager">
 
-        {% if id %}
-            <b id="edit-user">Дизайн засах</b> 
-            <b id="add-user" style="display: none;">Шинээр дизайн нэмэх</b>          
-        {% else %}
-            <b id="edit-user" style="display: none;">Дизайн засах</b> 
-            <b id="add-user">Шинээр дизайн нэмэх</b>
-        {% endif %}  
+        <div class="designs">
+            {% for design in designList %}
+            <a class="design" href="{% url 'edit-design' design.id %}">
+                <img class="image" src="/static/sample-namecard.jpg"/>
+                <span class="title">{{ design.name }}</span>
+            </a>
+           <!-- <td class="deleteDesing" onclick="deleteDesign({{design.id}})"> x </td> -->
+            {% endfor %}
+        </div>
 
-        <table>
-            <tbody>
-                <tr>
-                    <th>Дизайны нэр:</th>
+        <form method = "POST">
+            {% csrf_token %}
+            <input id = "edit-id" type = "hidden" name = "id" value = "{{id}}"/>
+            <input id = "lastname_attrs" type = "hidden" name = "lastname_attrs" value = "{{lastname_attrs}}" />
+            <span class = "error-msg small">{{errors.lastname_attrs}}</span>
+            <input id = "firstname_attrs" type = "hidden" name = "firstname_attrs" value = "{{firstname_attrs}}" />
+            <span class = "error-msg small">{{errors.firstname_attrs}}</span>
+            <input id = "phone_attrs" type = "hidden" name = "phone_attrs" value = "{{phone_attrs}}"/>
+            <span class = "error-msg small">{{errors.phone_attrs}}</span>
+            <input id = "email_attrs" type = "hidden" name = "email_attrs" value = "{{email_attrs}}"/>
+            <span class = "error-msg small">{{errors.email_attrs}}</span>
+            <input id = "fax_attrs" type = "hidden" name = "fax_attrs" value= "{{fax_attrs}}"/>
+            <span class = "error-msg small">{{errors.fax_attrs}}</span>
+            <input id = "position_attrs" type = "hidden" name = "position_attrs" value = "{{position_attrs}}"/>
+            <span class = "error-msg small" type = "hidden">{{errors.position_attrs}}</span>
+            <input type="button" value="Шинэ дизайн үүсгэх" onclick="newUser()">
+            <hr>
 
-                    <td>
-                        <input type = "text" name = "addName" value = "{{name}}"/>
-                        <span class = "error-msg small" >{{errors.name}}</span>    
-                    </td>             
-                </tr>
-                <tr> 
-                  <td> </td>
-                
-                  <td>
-                        <input type="hidden" id = "textAlign">
-                        <input type="hidden" id="fontWeight">
-                        <input type="hidden" id="fontStyle">
+            {% if id %}
+                <b id="edit-user">Дизайн засах</b> 
+                <b id="add-user" style="display: none;">Шинээр дизайн нэмэх</b>          
+            {% else %}
+                <b id="edit-user" style="display: none;">Дизайн засах</b> 
+                <b id="add-user">Шинээр дизайн нэмэх</b>
+            {% endif %}  
 
-                        <div class="toolbars" id="center" onclick = "toolbarActive(this, 'center')">
-                          <i class="fas fa-align-center"></i>
-                        </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>Дизайны нэр:</th>
 
-                        <div class="toolbars" id="justify" onclick = "toolbarActive(this, 'justify')">
-                          <i class="fas fa-align-justify"></i>
-                        </div>
+                        <td>
+                            <input type = "text" name = "addName" value = "{{name}}"/>
+                            <span class = "error-msg small" >{{errors.name}}</span>    
+                        </td>             
+                    </tr>
+                    <tr> 
+                      <td> </td>
+                    
+                      <td>
+                            <input type="hidden" id = "textAlign">
+                            <input type="hidden" id="fontWeight">
+                            <input type="hidden" id="fontStyle">
 
-                        <div class="toolbars" id="left" onclick = "toolbarActive(this, 'left')">
-                          <i class="fas fa-align-left"></i>
-                        </div>
+                            <div class="toolbars" id="center" onclick = "toolbarActive(this, 'center')">
+                              <i class="fas fa-align-center"></i>
+                            </div>
 
-                        <div class="toolbars" id="right" onclick = "toolbarActive(this, 'right')">
-                          <i class="fas fa-align-right"></i>
-                        </div>
+                            <div class="toolbars" id="justify" onclick = "toolbarActive(this, 'justify')">
+                              <i class="fas fa-align-justify"></i>
+                            </div>
 
-                        <div class="toolbar" id="bold" value = "bold" onclick = "boldAndItalic(this, 'bold')">
-                          <i class="fas fa-bold"></i>
-                        </div>
+                            <div class="toolbars" id="left" onclick = "toolbarActive(this, 'left')">
+                              <i class="fas fa-align-left"></i>
+                            </div>
 
-                        <div class="toolbar" id="italic" onclick = "boldAndItalic(this, 'italic')">
-                          <i class="fas fa-italic"></i>
-                        </div>
+                            <div class="toolbars" id="right" onclick = "toolbarActive(this, 'right')">
+                              <i class="fas fa-align-right"></i>
+                            </div>
 
-                        <label>Font:</label>
-                        <select name = "font" id = "font" onchange="changeField(this)">
-                          <option value = "Lucida Sans Unicode">Lucida Sans Unicode</option>
-                          <option value = "Lucida Grande">Lucida Grande</option>
-                          <option value = "sans-serif">sans-serif</option>
-                        </select>
+                            <div class="toolbar" id="bold" value = "bold" onclick = "boldAndItalic(this, 'bold')">
+                              <i class="fas fa-bold"></i>
+                            </div>
 
-                        <label>Color:</label>
-                        <input type = "color" id = "color" value = "#ff0000" onchange="changeField(this)">
+                            <div class="toolbar" id="italic" onclick = "boldAndItalic(this, 'italic')">
+                              <i class="fas fa-italic"></i>
+                            </div>
 
-                        <label> FontSize: </label> <select name = "fontSize" id = "fontSize" onchange="changeField(this)">
-                          <option value = "10px">10</option>
-                          <option value = "11px">11</option>
-                          <option value = "12px">12</option>
-                          <option value = "16px">16</option>
-                          <option value = "24px">24</option>
-                          <option value = "32px">32</option>
-                        </select>
+                            <label>Font:</label>
+                            <select name = "font" id = "font" onchange="changeField(this)">
+                              <option value = "Lucida Sans Unicode">Lucida Sans Unicode</option>
+                              <option value = "Lucida Grande">Lucida Grande</option>
+                              <option value = "sans-serif">sans-serif</option>
+                            </select>
 
-                        <label>BackgroundColor:</label> <input type = "color" id = "backgroundColor" value = "#ff0000" onchange="changeField(this)" >                               
-                    </td>                  
-                </tr>
+                            <label>Color:</label>
+                            <input type = "color" id = "color" value = "#ff0000" onchange="changeField(this)">
 
-                <tr>                 
-                    <th>Дизайн гаргах:</th>
-                    <td>
-                        <div class = "namecard">
-                            <div class = "textfield" input_id = "lastname_attrs" style = "top: 60px; left: 100px; " onclick = "currentElement(this)">[овог]</div>
-                            <div class ="textfield" input_id = "firstname_attrs" style = "top: 100px; left: 100px;" onclick = "currentElement(this)">[нэр]</div>
-                            <div class ="textfield" input_id = "position_attrs" style = "top: 140px; left: 100px;" onclick = "currentElement(this)">[албан тушаал]</div>
-                            <div class ="textfield" input_id = "phone_attrs" style = "top: 180px; left: 100px;" onclick = "currentElement(this)">[утас]</div>
-                            <div class ="textfield" input_id = "email_attrs" style = "top: 220px; left: 100px;" onclick = "currentElement(this)">[мэйл]</div>
-                            <div class = "textfield" input_id = "fax_attrs" style = "top: 260px; left: 100px;" onclick = "currentElement(this)">[факс]</div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                  <td> </td>
-                  <td><input type = "submit" value = "Хадгалах"></td>
-                </tr>
-                
-            </tbody>
+                            <label> FontSize: </label> <select name = "fontSize" id = "fontSize" onchange="changeField(this)">
+                              <option value = "10px">10</option>
+                              <option value = "11px">11</option>
+                              <option value = "12px">12</option>
+                              <option value = "16px">16</option>
+                              <option value = "24px">24</option>
+                              <option value = "32px">32</option>
+                            </select>
 
-        </table>
-    </form>
+                            <label>BackgroundColor:</label> <input type = "color" id = "backgroundColor" value = "#ff0000" onchange="changeField(this)" >                               
+                        </td>                  
+                    </tr>
 
+                    <tr>                 
+                        <th>Дизайн гаргах:</th>
+                        <td>
+                            <div class = "namecard">
+                                <div class = "textfield" input_id = "lastname_attrs" style = "top: 60px; left: 100px; " onclick = "currentElement(this)">[овог]</div>
+                                <div class ="textfield" input_id = "firstname_attrs" style = "top: 100px; left: 100px;" onclick = "currentElement(this)">[нэр]</div>
+                                <div class ="textfield" input_id = "position_attrs" style = "top: 140px; left: 100px;" onclick = "currentElement(this)">[албан тушаал]</div>
+                                <div class ="textfield" input_id = "phone_attrs" style = "top: 180px; left: 100px;" onclick = "currentElement(this)">[утас]</div>
+                                <div class ="textfield" input_id = "email_attrs" style = "top: 220px; left: 100px;" onclick = "currentElement(this)">[мэйл]</div>
+                                <div class = "textfield" input_id = "fax_attrs" style = "top: 260px; left: 100px;" onclick = "currentElement(this)">[факс]</div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                      <td> </td>
+                      <td><input type = "submit" value = "Хадгалах"></td>
+                    </tr>
+                    
+                </tbody>
+
+            </table>
+        </form>
+
+    </div>
     <script type = "text/javascript" src = "/static/home.js"></script>
 
   </body>

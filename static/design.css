@@ -25,7 +25,6 @@ input {
     box-shadow: inset 0 1px 0 0px rgba(255,255,255,.85), 0 0 0 1px #aB9c9c;
     padding: 4px 5px;
     margin: 2px 2px 2px 2px;
-
 }
 
 .toolbars.active{
@@ -65,13 +64,67 @@ input {
 .namecard .textfield.active {
     box-shadow: 0 0 0 4px #0000ff;
 }
+
 tbody td.deleteDesing{
     font-weight: bold;
     color: #Ff5722;
     cursor: pointer;
 }
 span.error-msg.small{
-color:#Ff5722;
-display: block;
-font-size: 14px;
+    color:#Ff5722;
+    display: block;
+    font-size: 14px;
+}
+
+.designs{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 12px;
+    overflow: auto;
+    height: 560px;
+}
+
+.design{
+    width: 160px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 4px;
+    display: inline-block;
+    /*text-decoration: none;*/
+    text-decoration: underline;
+}
+
+.design .image {
+    max-width: 160px;
+    max-height: 120px;
+}
+
+.design .title {
+    font-size: 12px;
+    text-align: center;
+    display: block;
+    color: #5e5e5e;
+}
+
+.design-manager {
+    display: grid;
+    grid-template-columns: 194px 920px;
+    grid-template-rows: 570px;
+    grid-gap: 20px;
+}
+
+::-webkit-scrollbar {
+  border-radius: 2px;
+  width: 4px;  /* for vertical scrollbars */
+  height: 4px; /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
 }
