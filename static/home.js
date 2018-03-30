@@ -15,7 +15,7 @@ function rgb2hex(rgb) {
 
 var cur_el = null;
 
-function deleteDesign(id){
+function deleteDesign(id) {
     var answer = confirm('Та '+id+' дугаартай загвар устгахдаа итгэлтэй байна уу?');
     if (answer) {
     window.location='/design/delete/'+id;
@@ -26,13 +26,12 @@ function deleteDesign(id){
 function currentElement(active_el) {
     var elements = document.querySelectorAll('.textfield');
     elements.forEach(function(element) {
-        if (element == active_el) return;
+        if(element == active_el) return;
 
-        if (element.classList.contains('active')) {
+        if(element.classList.contains('active')) {
             element.classList.remove('active');
         }
     });
-
 
     if (active_el.classList.contains('active')) {
         active_el.classList.remove('active');
@@ -52,15 +51,56 @@ function currentElement(active_el) {
         document.querySelector('#fontStyle').value = window.getComputedStyle(cur_el, null).getPropertyValue('font-style');
         document.querySelector('#backgroundColor').value = rgb2hex(window.getComputedStyle(cur_el, null).getPropertyValue('background-color'));
         
-        //if(document.querySelector('#textAlign').value != "center")
-            console.log(window.getComputedStyle(cur_el, null).getPropertyValue('text-align'));
+        if(window.getComputedStyle(cur_el, null).getPropertyValue('text-align')=="center") {
+            document.querySelector('#left').classList.remove("active");
+            document.querySelector('#justify').classList.remove("active");
+            document.querySelector('#right').classList.remove("active");
+            document.querySelector('#center').classList.add("active");
+            
+        }
        
+       if(window.getComputedStyle(cur_el, null).getPropertyValue('text-align')=="right") {
+            document.querySelector('#left').classList.remove("active");
+            document.querySelector('#justify').classList.remove("active");
+            document.querySelector('#center').classList.remove("active");
+            document.querySelector('#right').classList.add("active");
+            
+        }
+
+        if(window.getComputedStyle(cur_el, null).getPropertyValue('text-align')=="left") {
+            document.querySelector('#center').classList.remove("active");
+            document.querySelector('#justify').classList.remove("active");
+            document.querySelector('#right').classList.remove("active");
+            document.querySelector('#left').classList.add("active");
+            
+        }
+
+        if(window.getComputedStyle(cur_el, null).getPropertyValue('text-align')=="justify") {
+            document.querySelector('#left').classList.remove("active");
+            document.querySelector('#center').classList.remove("active");
+            document.querySelector('#right').classList.remove("active");
+            document.querySelector('#justify').classList.add("active");
+            
+        }
+
+        if(window.getComputedStyle(cur_el, null).getPropertyValue('font-style') == "normal") {
+            document.querySelector('#italic').classList.remove("active");            
+        } else {
+            document.querySelector('#italic').classList.add("active");            
+        } 
+
+         if(window.getComputedStyle(cur_el, null).getPropertyValue('font-weight') == "400") {
+            document.querySelector('#bold').classList.remove("active");            
+        } else {
+            document.querySelector('#bold').classList.add("active");            
+        } 
+
         
     }
 }
 
-function toolbarActive(active_el, value){
-    console.log(active_el.id);
+function toolbarActive(active_el, value) {
+   
     var elements = document.querySelectorAll('.toolbars');
     elements.forEach(function(element) {
         if (element == active_el) return;
@@ -86,8 +126,7 @@ function toolbarActive(active_el, value){
 }
 
 function boldAndItalic(active_el, value) {
-    //console.log(active_el);
-   
+    
  if (active_el.classList.contains('active')) {
         active_el.classList.remove('active');
         chooseBtn(active_el, "normal");
@@ -103,16 +142,13 @@ function boldAndItalic(active_el, value) {
 }
 
 function showDesignOnLoad()
-{
-   
+{   
     if (document.querySelector("#lastname_attrs").value.length > 0) setDesign('lastname_attrs');
     if (document.querySelector("#firstname_attrs").value.length > 0) setDesign('firstname_attrs');
     if (document.querySelector("#position_attrs").value.length > 0) setDesign('position_attrs');
     if (document.querySelector("#phone_attrs").value.length > 0) setDesign('phone_attrs');
     if (document.querySelector("#email_attrs").value.length > 0) setDesign('email_attrs');
-    if (document.querySelector("#fax_attrs").value.length > 0) setDesign('fax_attrs');
-
-   
+    if (document.querySelector("#fax_attrs").value.length > 0) setDesign('fax_attrs');   
 }
 
 
@@ -159,8 +195,7 @@ function applyStyleToCurrentElement() {
 }
 
 
-function chooseBtn(btn, value){
-    
+function chooseBtn(btn, value){    
     if(btn.id == "center" || btn.id == "left" || btn.id == "right" || btn.id == "justify")
         document.querySelector('#textAlign').value = value;
 
@@ -177,17 +212,19 @@ showDesignOnLoad();
 
 document.addEventListener('keydown', function(e){
     if(cur_el==null) return;    
-  console.log(e.target.tagName);
-  if(e.target.tagName == 'BODY') { e.preventDefault(); }
-  else return;
-
-  if (e.key == 'ArrowRight') {
-    if (e.shiftKey == true) {
-      cur_el.style.width = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('width')) + 1) + 'px';
+  //console.log(e.target.tagName); //ymar talbart  towch darj bgaa
+    if(e.target.tagName == 'BODY'){
+        e.preventDefault(); 
     } else {
-      cur_el.style.left = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('left')) + 1) + 'px';
+        return;
     }
-    
+
+    if (e.key == 'ArrowRight') {
+        if (e.shiftKey == true) {
+          cur_el.style.width = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('width')) + 1) + 'px';
+        } else {
+          cur_el.style.left = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('left')) + 1) + 'px';
+        }
     
   }
 
@@ -200,7 +237,7 @@ document.addEventListener('keydown', function(e){
     
   }
 
-  if ( e.key == 'ArrowUp') {
+  if (e.key == 'ArrowUp') {
     
      if (e.shiftKey == true) {
 
@@ -210,7 +247,7 @@ document.addEventListener('keydown', function(e){
     }
    
     } 
-    if ( e.key == 'ArrowDown') {
+    if (e.key == 'ArrowDown') {
     
      if (e.shiftKey == true) {
       cur_el.style.height = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('height')) + 1) + 'px';
@@ -219,7 +256,7 @@ document.addEventListener('keydown', function(e){
     }
     }  
    // e.preventDefault();
-    console.log(e.key);
+   // console.log(e.key);
 
     var input_id = cur_el.getAttribute('input_id');
 
@@ -228,18 +265,18 @@ document.addEventListener('keydown', function(e){
 });
 
 
-function newUser(){
+function newUser() {
     window.location='/';
 }
 
 
-function changeField(el){
+function changeField(el) {
      applyStyleToCurrentElement();
 }
 
 
 
-function keypressed(e, el){
+function keypressed(e, el) {
     if (e.key == '2') {
         var value = parseInt(el.value);
         el.value = (value - 1) + 'px';
