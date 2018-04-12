@@ -118,7 +118,7 @@ function toolbarActive(active_el, value) {
          
     } 
     else {
-     dwec   active_el.classList.add('active');
+        active_el.classList.add('active');
         chooseBtn(active_el, value);   
         
     }   
@@ -266,8 +266,7 @@ document.addEventListener('keydown', function(e){
 
 
 function newUser() {
-    #lastname_attrs = " ";
-
+   
 
     window.location='/';
 }
