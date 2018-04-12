@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import design.views
+import django.urls
 
 urlpatterns = [
     path('', design.views.manageDesign, name='add-design'),
