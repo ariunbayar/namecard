@@ -5,12 +5,95 @@
     <meta charset = "UTF-8">
 
 <style>
+
+.dialog-container{
+    position: static;
+    position: relative;
+    position: absolute;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    display: none;
+    grid-template-columns: 1fr 500px 1fr;
+    grid-template-rows: 1fr 300px 1fr;
+}
+
+.dialog-container:target{
+    display: grid;
+}
+
+.dialog-container > .dialog{
+    border-top: 40px solid blue;
+    background-color: #fff;
+    grid-row: 2/3;
+    grid-column: 2/3;
+    padding: 20px 30px;
+}
+.dialog-container > .dialog > .content{
+    height: 190px;
+}
+
+.dialog-container > .dialog > .buttons{
+    text-align: right;
+}
+
 </style>
 </head>
 
 <body>
 
 hello
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porttitor mauris vitae elit placerat scelerisque. Donec at odio non lectus bibendum sollicitudin. Vestibulum dignissim sem velit, in tristique nunc finibus efficitur. Etiam metus metus, dapibus quis neque id, placerat posuere ligula. Phasellus id quam feugiat, pellentesque eros ac, lobortis augue. Aenean ac felis quis nibh mollis eleifend. Aliquam id nunc ultrices, tincidunt ipsum at, vulputate massa. Etiam mattis sit amet dui a lobortis. Aenean venenatis ante eu ex semper, nec blandit nibh tincidunt. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam lorem lectus, tincidunt sit amet tincidunt at, semper varius elit. Nulla ultrices vulputate aliquet. Sed sed metus quis erat imperdiet mollis. Quisque consequat malesuada placerat. Quisque nec erat lorem. Mauris massa dolor, aliquet facilisis pellentesque congue, aliquet et risus.</p>
+
+<p>
+
+    <a href="#dialog" onclick="showDialog(123)">Proin odio diam</a>
+
+    , lacinia et tortor non, aliquet mollis lorem. Nulla sed commodo turpis. Maecenas ac diam est. Vestibulum ut eros placerat, varius eros id, fermentum nisl. Sed vitae justo pellentesque, vulputate neque at, venenatis velit. Donec accumsan ligula enim, maximus gravida sapien consequat eget. Vestibulum a diam justo. Pellentesque volutpat tincidunt dolor non tincidunt. Suspendisse ex odio, vehicula eu eleifend ac, scelerisque non mi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent non orci dolor. Maecenas in malesuada neque, sed porta mi.
+</p>
+
+<p>Vestibulum nec ornare sem, non tempor ante. Nam ante neque, aliquet sit amet efficitur in, convallis ut purus. Phasellus volutpat, ipsum vel tincidunt lobortis, enim libero interdum lectus, vel euismod turpis est vitae lectus. Nunc tempus non ipsum quis volutpat. Fusce efficitur ultricies nisl. Integer porttitor dignissim mi, in viverra odio euismod a. Maecenas finibus enim id accumsan tempor. Donec turpis ante, feugiat eget vulputate eget, gravida commodo urna. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi elementum consectetur est. Aliquam mollis augue pellentesque nulla pellentesque ornare. Maecenas sed nunc efficitur, finibus neque a, fermentum sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+<p>In hac habitasse platea dictumst. Nunc hendrerit metus nibh, eget congue quam scelerisque eget. Donec consequat ante ut enim euismod ultricies. Aliquam at metus massa. Aliquam quam nibh, dapibus a dapibus at, laoreet ut velit. Nulla egestas nisl ac ex gravida scelerisque. Etiam fringilla augue venenatis fringilla dignissim. Mauris vel dignissim erat, non dignissim lectus. Nulla convallis lorem a est scelerisque dapibus. Fusce ornare, nulla ut vehicula cursus, ex sapien tristique libero, eget iaculis tortor erat rutrum dolor. Etiam faucibus molestie mi at interdum. Aenean efficitur lectus sed eros consequat condimentum. Mauris fringilla suscipit odio posuere vulputate. Nam id mauris nec urna pulvinar convallis in eu risus.</p>
+
+<p>Pellentesque laoreet pellentesque orci, sed venenatis diam fermentum in. Pellentesque pellentesque nibh at nulla sagittis porttitor. Nulla lacus elit, placerat et ipsum non, tincidunt pellentesque massa. Ut eu ex tempus ex dignissim interdum laoreet et odio. Maecenas lacus risus, interdum sit amet cursus commodo, feugiat ut metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin eu orci mauris. Integer non ex non nisi pulvinar gravida. Donec quis tincidunt mi. Donec rutrum, metus et molestie accumsan, lorem turpis rutrum purus, at mollis ex dui volutpat nulla. Nulla vel laoreet tellus. Duis laoreet maximus nisi quis malesuada. Vivamus malesuada risus nec nunc interdum maximus.</p>
+
+
+<div class="dialog-container" id="dialog">
+    <div class="dialog">
+        <div class="content">
+            Та устгахдаа итгэлтэй байна уу?
+        </div>
+
+        <div class="buttons">
+            <input type="button" value="Тийм" onclick="deleteDesign()"/>
+            <a href="#">Буцах</a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+var delete_id = null;
+
+function showDialog(id){
+    delete_id = id;
+    document.querySelector('.dialog-container .content').innerHTML = 'Та ' + id + ' дугаартай дизайныг устгахдаа итгэлтэй байна уу?';
+}
+
+function deleteDesign() {
+    window.location = '/delete/' + delete_id;
+}
+
+</script>
+
+
+
 
 </body>
 
