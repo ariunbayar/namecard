@@ -3,8 +3,6 @@
 
     <head>
         <meta charset = "UTF-8">
-        <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.SnyUjRrbdJsw1pGIl" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl" crossorigin="anonymous"></script>
-
         <!--<link rel="stylesheet" type="text/css" href="/home/baigalaa/Downloads/fontawesome-free-5.0.9/web-fonts-with-css/css/fontawesome-all.css">-->
         <link rel = "stylesheet" type = "text/css" href = "/static/design.css">
         <link rel = "stylesheet" type = "text/css" href = "/static/fontawesome-all.min.css">
@@ -31,7 +29,7 @@
                 </div>
                 
                 <a href="#">Desing</a>
-                <a href="#">Search</a>
+                <a href="" ="#">Search</a>
                 <a href="/print/">Print</a>
                 
 
@@ -45,9 +43,16 @@
                           <a class="design" href="{% url 'edit-design' design.id %}"> <img class="image" src="/static/download.jpeg"/>
                           <span class="title">{{design.name}}</span> </a>             
                           <div class="deleteDesing" onclick="deleteDesign({{design.id}})"> x</div>
-                      </div>
+                      </div>               
 
                      {% endfor %}
+
+                     <div class="plusDesign">
+                          <div class="plusIcon" onclick="newUser()">                         
+                              <i class="fas fa-plus"></i>
+                           </div>
+                     </div>
+
                 </div>
 
                 <form method = "POST">
@@ -65,9 +70,7 @@
                     <span class = "error-msg small">{{errors.fax_attrs}}</span>
                     <input id = "position_attrs" type = "hidden" name = "position_attrs" value = "{{position_attrs}}"/>
                     <span class = "error-msg small" type = "hidden">{{errors.position_attrs}}</span>
-                    <input type="button" value="Шинэ дизайн үүсгэх" onclick="newUser()">
-                    <hr>
-
+                    
                     {% if id %}
                         <b id="edit-user">Дизайн засах</b> 
                         <b id="add-user" style="display: none;">Шинээр дизайн нэмэх</b>          
@@ -93,14 +96,7 @@
                                     <input type="hidden" id = "textAlign">
                                     <input type="hidden" id="fontWeight">
                                     <input type="hidden" id="fontStyle">
-
-                                    <div class="toolbars" id="center" onclick = "toolbarActive(this, 'center')">
-                                      <i class="fas fa-align-center"></i>
-                                    </div>
-
-                                    <div class="toolbars" id="justify" onclick = "toolbarActive(this, 'justify')">
-                                      <i class="fas fa-align-justify"></i>
-                                    </div>
+                                     <input type="hidden" id="textDecoration">
 
                                     <div class="toolbars" id="left" onclick = "toolbarActive(this, 'left')">
                                       <i class="fas fa-align-left"></i>
@@ -110,12 +106,24 @@
                                       <i class="fas fa-align-right"></i>
                                     </div>
 
+                                    <div class="toolbars" id="center" onclick = "toolbarActive(this, 'center')">
+                                      <i class="fas fa-align-center"></i>
+                                    </div>
+
+                                    <div class="toolbars" id="justify" onclick = "toolbarActive(this, 'justify')">
+                                      <i class="fas fa-align-justify"></i>
+                                    </div>                            
+
                                     <div class="toolbar" id="bold" value = "bold" onclick = "boldAndItalic(this, 'bold')">
                                       <i class="fas fa-bold"></i>
                                     </div>
 
                                     <div class="toolbar" id="italic" onclick = "boldAndItalic(this, 'italic')">
                                       <i class="fas fa-italic"></i>
+                                    </div>
+
+                                    <div class="toolbar" id="underline" onclick = "underline1(this, 'underline')">
+                                      <i class="fas fa-underline"></i>
                                     </div>
 
                                     

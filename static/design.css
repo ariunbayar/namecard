@@ -69,6 +69,30 @@ body{
 
 }
 
+.plusDesign{
+    width: 160px;
+    height: 130px;
+    padding-right: 20px;
+    background-color: rgba(0,0,0,0.05);
+    margin: 4px;
+}
+
+.plusIcon{
+    display: inline-block;
+    border: 1px;
+    border-radius: 25px;
+    background-color: #cbcbcb;
+    padding: 4px 5px;
+    margin: 45px 2px 2px 70px;
+    color: red;
+    font-size: 30px;
+
+}
+
+.plusIcon:hover{
+ background-color: #9a8c8c;   
+}
+
 .design{   
     
     margin: 4px;
@@ -90,6 +114,7 @@ body{
     font-size: 10px;
     text-align: center;
     color: #112461;
+
 }
 
 .deleteDesing{
@@ -156,6 +181,7 @@ input {
     font-size: 16px;
     /*background-color: rgba(0,0,0,0);*/
     background-color: #ffffff;
+    text-decoration: none;
 }
 
 .namecard .textfield:hover {
@@ -172,6 +198,7 @@ span.error-msg.small{
     display: block;
     font-size: 14px;
 }
+
 
 ::-webkit-scrollbar
 {
