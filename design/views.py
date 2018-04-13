@@ -128,4 +128,4 @@ def search(request):
 
 def print(request):
     ctx = {}
-    return render(request, 'design/design.html',ctx)    
+    return render(request, 'design/print.html',ctx) 

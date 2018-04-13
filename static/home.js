@@ -49,6 +49,7 @@ function currentElement(active_el) {
         document.querySelector('#textAlign').value = window.getComputedStyle(cur_el, null).getPropertyValue('text-align');
         document.querySelector('#fontWeight').value = window.getComputedStyle(cur_el, null).getPropertyValue('font-weight');
         document.querySelector('#fontStyle').value = window.getComputedStyle(cur_el, null).getPropertyValue('font-style');
+        document.querySelector('#underline').value = window.getComputedStyle(cur_el, null).getPropertyValue('text-decoration');
         document.querySelector('#backgroundColor').value = rgb2hex(window.getComputedStyle(cur_el, null).getPropertyValue('background-color'));
         
         if(window.getComputedStyle(cur_el, null).getPropertyValue('text-align')=="center") {
@@ -93,6 +94,15 @@ function currentElement(active_el) {
             document.querySelector('#bold').classList.remove("active");            
         } else {
             document.querySelector('#bold').classList.add("active");            
+        }
+
+         uLine = window.getComputedStyle(cur_el, null).getPropertyValue('text-decoration').split(" ");
+         text_decoration = uLine[0];
+
+        if(text_decoration== "none") {
+            document.querySelector('#underline').classList.remove("active");            
+        } else {
+            document.querySelector('#underline').classList.add("active");            
         } 
 
         
@@ -130,16 +140,28 @@ function boldAndItalic(active_el, value) {
  if (active_el.classList.contains('active')) {
         active_el.classList.remove('active');
         chooseBtn(active_el, "normal");
- }
-  else {
+ }else {
     active_el.classList.add('active');
     active_el.value = active_el.id;
     chooseBtn(active_el, value);
+    }
+}
+
+function underline1(active_el, value){
+    if(active_el.classList.contains('active')){
+        active_el.classList.remove('active');
+        chooseBtn(active_el, "none");
+    }else {
+        active_el.classList.add('active');
+        active_el.value = active_el.id;
+        chooseBtn(active_el, value);
+
+    }
 }
 
 
 
-}
+
 
 function showDesignOnLoad()
 {   
@@ -169,6 +191,7 @@ function setDesign(textfieldName){
         el_name.style.textAlign = values[7];
         el_name.style.fontWeight = values[8];
         el_name.style.fontStyle = values[9];
+        el_name.style.textDecoration = values[9];
         el_name.style.backgroundColor = values[10];
 }
 
@@ -204,6 +227,9 @@ function chooseBtn(btn, value){
 
     if(btn.id == "normal" || btn.id == "italic" )
         document.querySelector('#fontStyle').value = value;
+
+     if(btn.id == "none" || btn.id == "underline" )
+        document.querySelector('#textDecoration').value = value;
    applyStyleToCurrentElement();
 }
 
@@ -213,13 +239,12 @@ showDesignOnLoad();
 document.addEventListener('keydown', function(e){
     if(cur_el==null) return;    
   //console.log(e.target.tagName); //ymar talbart  towch darj bgaa
-    if(e.target.tagName == 'BODY'){
-        e.preventDefault(); 
-    } else {
+    if(e.target.tagName != 'BODY'){
         return;
     }
 
     if (e.key == 'ArrowRight') {
+         e.preventDefault(); 
         if (e.shiftKey == true) {
           cur_el.style.width = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('width')) + 1) + 'px';
         } else {
@@ -229,6 +254,7 @@ document.addEventListener('keydown', function(e){
   }
 
   if (e.key == 'ArrowLeft') {
+       e.preventDefault(); 
     if (e.shiftKey == true) {
       cur_el.style.width = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('width')) - 1) + 'px';
     } else {
@@ -238,7 +264,7 @@ document.addEventListener('keydown', function(e){
   }
 
   if (e.key == 'ArrowUp') {
-    
+       e.preventDefault(); 
      if (e.shiftKey == true) {
 
       cur_el.style.height = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('height')) - 1) + 'px';
@@ -248,15 +274,14 @@ document.addEventListener('keydown', function(e){
    
     } 
     if (e.key == 'ArrowDown') {
-    
+         
+      e.preventDefault(); 
      if (e.shiftKey == true) {
       cur_el.style.height = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('height')) + 1) + 'px';
     } else {
       cur_el.style.top = (parseInt(window.getComputedStyle(cur_el, null).getPropertyValue('top')) + 1) + 'px';
     }
     }  
-   // e.preventDefault();
-   // console.log(e.key);
 
     var input_id = cur_el.getAttribute('input_id');
 
@@ -266,6 +291,8 @@ document.addEventListener('keydown', function(e){
 
 
 function newUser() {
+   
+
     window.location='/';
 }
 

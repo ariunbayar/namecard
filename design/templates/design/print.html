@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset = "UTF-8">
+
+<style>
+
+.colorpicker {
+    display: inline-block;
+    border: 1px solid blue;
+    border-radius: 2px;
+    background-color: #cbcbcb;
+    padding: 4px 5px;
+    margin: 2px 2px 2px 2px;
+    height: 22px;
+    width: 22px;
+}
+.colorpicker:hover {
+    box-shadow: 0 1px 0 0px rgba(255,255,255,.85), 0 0 0 1px #aB9c9c;
+}
+
+.colorpicker > .color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+}
+
+.colorpicker > .picker {
+    grid-template-columns: repeat(5, 18px);
+    grid-template-rows: repeat(5, 18px);
+    grid-gap: 2px;
+    position: absolute;
+    display: none;
+    background: #fff;
+    padding: 4px;
+    background-color: #cbcbcb;
+    border-radius: 4px;
+}
+
+
+.colorpicker:hover > .picker {
+    display: grid;
+}
+
+
+.colorpicker > .picker > .color {
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 2px;
+}
+.colorpicker > .picker > .color:hover {
+    box-shadow: 0 1px 0 0px rgba(255,255,255,.85), 0 0 0 1px #aB9c9c;
+}
+
+</style>
+</head>
+
+<body>
+
+<span class="colorpicker" callback="changebackgroundcolor">
+    <span class="color"></span>
+
+    <div class="picker">
+        <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+
+        <span class="color" style="background-color: #c62828;" onclick="colorPickerSetColor('#c62828', this)"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+
+        <span class="color" style="background-color: #d32f2f;" onclick="colorPickerSetColor('#d32f2f', this)"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+
+
+        <span class="color" style="background-color: #ffebee;" onclick="colorPickerSetColor('#ffebee', this)"></span>
+        <span class="color" style="background-color: blue;"></span>
+    </div>
+</span>
+
+
+<span class="colorpicker" callback="changetextcolor">
+    <span class="color"></span>
+
+    <div class="picker">
+        <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+
+        <span class="color" style="background-color: #c62828;" onclick="colorPickerSetColor('#c62828', this)"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+
+        <span class="color" style="background-color: #d32f2f;" onclick="colorPickerSetColor('#d32f2f', this)"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+
+
+        <span class="color" style="background-color: #ffebee;" onclick="colorPickerSetColor('#ffebee', this)"></span>
+        <span class="color" style="background-color: blue;"></span>
+    </div>
+</span>
+
+
+
+<script>
+
+function colorPickerSetColor(color, el) {
+    var colorpicker = el.parentElement.parentElement;
+
+    colorpicker.querySelector(':scope > .color').style.backgroundColor = color;
+
+    var fn_name = colorpicker.getAttribute('callback');
+    window[fn_name](color);
+}
+
+function changebackgroundcolor(color) {
+    console.log('backgroundcolor is set to: ' + color);
+}
+
+function changetextcolor(color) {
+    console.log('text color is set to: ' + color);
+}
+
+
+</script>
+
+
+</body>
+
+</html>
