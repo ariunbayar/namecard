@@ -123,7 +123,7 @@ def delete(request, designId):
 
 def search(request):
     ctx = {}
-    return render(request, 'design/design.html',ctx)
+    return render(request, 'design/search.html',ctx)
 
 
 def print(request):
