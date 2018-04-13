@@ -191,8 +191,8 @@ function setDesign(textfieldName){
         el_name.style.textAlign = values[7];
         el_name.style.fontWeight = values[8];
         el_name.style.fontStyle = values[9];
-        el_name.style.textDecoration = values[9];
-        el_name.style.backgroundColor = values[10];
+        el_name.style.textDecoration = values[10];
+        el_name.style.backgroundColor = values[11];
 }
 
 
@@ -209,12 +209,13 @@ function applyStyleToCurrentElement() {
     cur_el.style.textAlign = document.querySelector('#textAlign').value;;  // left, center, right, justify
     cur_el.style.fontWeight = document.querySelector('#fontWeight').value;  // bold, normal
     cur_el.style.fontStyle = document.querySelector('#fontStyle').value;  // italic, normal
+    cur_el.style.textDecoration = document.querySelector('#textDecoration').value;
     cur_el.style.backgroundColor = document.querySelector('#backgroundColor').value;
 
     // <div ... input_id="lastname_attrs">...</div>
     var input_id = cur_el.getAttribute('input_id');
 
-    document.querySelector('#'+input_id).value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
+    document.querySelector('#'+input_id).value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.textDecoration+"/"+cur_el.style.backgroundColor;
 }
 
 
@@ -285,7 +286,7 @@ document.addEventListener('keydown', function(e){
 
     var input_id = cur_el.getAttribute('input_id');
 
-    document.querySelector('#'+input_id).value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.backgroundColor;
+    document.querySelector('#'+input_id).value = cur_el.style.top+"/"+cur_el.style.left+"/"+cur_el.style.fontFamily+"/"+cur_el.style.color+"/"+  cur_el.style.width+"/"+ cur_el.style.height+"/"+cur_el.style.fontSize+"/"+cur_el.style.textAlign+"/"+cur_el.style.fontWeight+"/"+cur_el.style.fontStyle+"/"+cur_el.style.textDecoration+"/"+cur_el.style.backgroundColor;
 
 });
 
