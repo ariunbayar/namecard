@@ -15,12 +15,12 @@ function rgb2hex(rgb) {
 
 var cur_el = null;
 
-function deleteDesign(id) {
+/*function deleteDesign(id) {
     var answer = confirm('Та '+id+' дугаартай загвар устгахдаа итгэлтэй байна уу?');
     if (answer) {
     window.location='/design/delete/'+id;
     }
-}
+}*/
 
 
 function currentElement(active_el) {
@@ -202,7 +202,7 @@ function applyStyleToCurrentElement() {
     //cur_el.style.top = document.querySelector('#top').value;
    // cur_el.style.left = document.querySelector('#left').value;
     cur_el.style.fontFamily = document.querySelector('#font').value;
-    cur_el.style.color = document.querySelector('#color').value;
+    //cur_el.style.color = document.querySelector('#color').value;
     //cur_el.style.width = document.querySelector('#width').value;
     //cur_el.style.height = document.querySelector('#height').value;
     cur_el.style.fontSize = document.querySelector('#fontSize').value;
@@ -210,7 +210,7 @@ function applyStyleToCurrentElement() {
     cur_el.style.fontWeight = document.querySelector('#fontWeight').value;  // bold, normal
     cur_el.style.fontStyle = document.querySelector('#fontStyle').value;  // italic, normal
     cur_el.style.textDecoration = document.querySelector('#textDecoration').value;
-    cur_el.style.backgroundColor = document.querySelector('#backgroundColor').value;
+    cur_el.style.backgroundColor = document.querySelector('#color').value;
 
     // <div ... input_id="lastname_attrs">...</div>
     var input_id = cur_el.getAttribute('input_id');
@@ -317,3 +317,34 @@ function keypressed(e, el) {
     applyStyleToCurrentElement();
     e.preventDefault();
 };
+
+var delete_id = null;
+
+function showDialog(id){
+    delete_id = id;
+    document.querySelector('.dialog-container .content').innerHTML = 'Та ' + id + ' дугаартай дизайныг устгахдаа итгэлтэй байна уу?';
+}
+
+function deleteDesign() {
+    console.log(delete_id);
+    
+    window.location='/design/delete/'+delete_id;
+}
+
+function colorPickerSetColor(color, el) {
+    var colorpicker = el.parentElement.parentElement;
+
+    colorpicker.querySelector(':scope > .color').style.backgroundColor = color;
+
+    var fn_name = colorpicker.getAttribute('callback');
+    window[fn_name](color);
+}
+
+function changebackgroundcolor(color) {
+    applyStyleToCurrentElement();
+    console.log('backgroundcolor is set to: ' + color);
+}
+
+function changetextcolor(color) {
+    console.log('text color is set to: ' + color);
+}

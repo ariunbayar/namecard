@@ -40,8 +40,10 @@
                      <div class="designList">
 
                           <a class="design" href="{% url 'edit-design' design.id %}"> <img class="image" src="/static/download.jpeg"/>
-                          <span class="title">{{design.name}}</span> </a>             
-                          <div class="deleteDesing" onclick="deleteDesign({{design.id}})"> x</div>
+                          <span class="title" >{{design.name}}</span> </a>             
+                          <!--<div class="deleteDesing" > x</div>-->
+                          <a href="#dialog" onclick="showDialog({{design.id}})">x</a>
+                           
                       </div>               
 
                      {% endfor %}
@@ -141,9 +143,87 @@
                                       <option value = "32px">32px</option>
                                     </select>
 
-                                    <label>Color:</label>
-                                    <input type = "color" id = "color" value = "#ff0000" onchange="changeField(this)">
-                                    <label>BackgroundColor:</label> <input type = "color" id = "backgroundColor" value = "#ff0000" onchange="changeField(this)" >                               
+                                  <!--  <label>Color:</label>
+                                    <input type = "color" id = "color" value = "#ff0000" onchange="changeField(this)">-->
+                                    
+                                    <span class="colorpicker" callback="changebackgroundcolor">
+                                        <span class="color"></span>
+
+                                        <div class="picker">
+                                            <span class="color" id ="color" style="background-color: #000000;" onclick="colorPickerSetColor('#000000', this)"></span>
+                                            <span class="color" id ="color" style="background-color: #FFFFFF;" onclick="colorPickerSetColor('#FFFFFF', this)"></span>
+                                            <span class="color" id ="color" style="background-color: #E5E7E9;" onclick="colorPickerSetColor('#E5E7E9', this)"></span>
+                                            <span class="color" id ="color" style="background-color: #D7DBDD;" onclick="colorPickerSetColor('#D7DBDD', this)"></span>
+                                            <span class="color" id ="color" style="background-color: #99A3A4;" onclick="colorPickerSetColor('#99A3A4', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            
+                                           
+                                           <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            
+
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            
+
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            
+
+                                           <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+                                            
+                                        </div>
+                                    </span>
+
+
                                 </td>                  
                             </tr>
 
@@ -173,9 +253,26 @@
             </div>
 
             <div class="footer"></div>
+
+            <div class="dialog-container" id="dialog">
+                            <div class="dialog">
+                                <div class="content">
+                                    Та устгахдаа итгэлтэй байна уу?
+                                </div>
+
+                                <div class="buttons">
+                                
+                                    <input type="button" value="Тийм" onclick="deleteDesign()"/>
+
+                                    <a href="#">Буцах</a>
+                                </div>
+                            </div>
+                        </div>
         </div>       
+       
 
         <script type = "text/javascript" src = "/static/home.js"></script>
 
     </body>
 </html>
+  

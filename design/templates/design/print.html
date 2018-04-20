@@ -64,6 +64,10 @@
 
     <div class="picker">
         <span class="color" style="background-color: #b71c1c;" onclick="colorPickerSetColor('#b71c1c', this)"></span>
+        <span class="color" style="background-color: #e91e63;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
+        <span class="color" style="background-color: blue;"></span>
         <span class="color" style="background-color: blue;"></span>
         <span class="color" style="background-color: blue;"></span>
         <span class="color" style="background-color: blue;"></span>
@@ -122,11 +126,15 @@
 
 function colorPickerSetColor(color, el) {
     var colorpicker = el.parentElement.parentElement;
+    console.log(colorpicker);
 
     colorpicker.querySelector(':scope > .color').style.backgroundColor = color;
 
+    console.log(colorpicker.querySelector(':scope > .color').style.backgroundColor );
+
     var fn_name = colorpicker.getAttribute('callback');
-    window[fn_name](color);
+    console.log(fn_name);   
+ console.log(   window[fn_name](color));
 }
 
 function changebackgroundcolor(color) {

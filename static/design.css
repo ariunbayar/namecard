@@ -69,6 +69,22 @@ body{
 
 }
 
+.designList a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #Ff5722;
+    cursor: pointer;
+    display: block;
+    padding: 0px 5px 20px 0px;
+    grid-column:2/3;
+
+}
+
+.designList a:hover{
+background-color: rgba(0,0,0,.15);
+
+}
+
 .plusDesign{
     width: 160px;
     height: 130px;
@@ -95,6 +111,7 @@ body{
 
 .design{   
     
+    height: 80px; 
     margin: 4px;
     border-radius: 4px;
     display: inline-block;
@@ -128,6 +145,38 @@ body{
 
 .deleteDesing:hover{
     background-color: rgba(0,0,0,.15);
+}
+
+
+.dialog-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0,0,0,0.3);
+    display: none;
+    grid-template-columns: 1fr 500px 1fr;
+    grid-template-rows: 1fr 300px 1fr;
+}
+
+.dialog-container:target{
+    display: grid;
+}
+
+.dialog-container > .dialog{
+    border-top: 40px solid blue;
+    background-color: #fff;
+    grid-row: 2/3;
+    grid-column: 2/3;
+    padding: 20px 30px;
+}
+.dialog-container > .dialog > .content{
+    height: 190px;
+}
+
+.dialog-container > .dialog > .buttons{
+    text-align: right;
 }
 
 input {
@@ -198,6 +247,9 @@ span.error-msg.small{
     font-size: 14px;
 }
 
+
+
+
 ::-webkit-scrollbar
 {
   width: 4px;  /* for vertical scrollbars */
@@ -244,6 +296,56 @@ span.error-msg.small{
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+}
+
+.colorpicker {
+    display: inline-block;
+    border: 1px solid blue;
+    border-radius: 2px;
+    background-color: #cbcbcb;
+    padding: 4px 5px;
+    margin: 2px 2px 2px 2px;
+    height: 22px;
+    width: 22px;
+
+}
+.colorpicker:hover {
+    box-shadow: 0 1px 0 0px rgba(255,255,255,.85), 0 0 0 1px #aB9c9c;
+}
+
+.colorpicker > .color {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+}
+
+.colorpicker > .picker {
+    grid-template-columns: repeat(10, 13px);
+    grid-template-rows: repeat(6, 13px);
+    grid-gap: 3px;
+    position: absolute;
+    display: none;
+    background: #fff;
+    padding: 4px;
+    background-color: #cbcbcb;
+    border-radius: 4px;
+    z-index: 100;
+}
+
+
+.colorpicker:hover > .picker {
+    display: grid;
+}
+
+
+.colorpicker > .picker > .color {
+    display: inline-block;
+    border: 1px solid #000;
+    border-radius: 2px;
+}
+.colorpicker > .picker > .color:hover {
+    box-shadow: 0 1px 0 0px rgba(255,255,255,.85), 0 0 0 1px #aB9c9c;
 }
 
 .dropdown-content a {
